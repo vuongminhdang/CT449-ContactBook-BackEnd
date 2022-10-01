@@ -31,7 +31,7 @@ class ContactService {
     }
 
     async find(filter) {
-        const cursor = await this.Contact.find(filter); 
+        const cursor = await this.contact.find(filter); 
         return await cursor.toArray();
     }
         
@@ -44,7 +44,7 @@ class ContactService {
 
     //FindOne
     async findById(id) {
-        return await this.Contact.findOne({
+        return await this.contact.findOne({
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
         });
     }
@@ -55,7 +55,7 @@ class ContactService {
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
         };
         const update = this.extractConactData(payload);
-        const result = await this.Contact.findOneAndUpdate(
+        const result = await this.contact.findOneAndUpdate(
             filter,
             { $set: update },
             { returnDocument: "after" }
@@ -65,7 +65,7 @@ class ContactService {
         
     //Deleted
     async delete(id) {
-        const result = await this.Contact.findOneAndDelete({
+        const result = await this.contact.findOneAndDelete({
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
         });
         return result.value;
@@ -78,7 +78,7 @@ class ContactService {
 
     //deletedAll
     async deleteAll() {
-        const result = await this.Contact.deleteMany({});
+        const result = await this.contact.deleteMany({});
         return result.deletedCount;
     }
 }
