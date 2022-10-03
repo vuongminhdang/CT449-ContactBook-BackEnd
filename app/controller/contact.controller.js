@@ -3,33 +3,6 @@ const ApiError = require("../api-error");
 const ContactService = require("../services/contact.service");
 const MongoDB = require("../utils/mongodb.util");
 
-/*exports.create = (req, res) => {
-    res.send({ message: "create handler"});
-};
-
-exports.findAll = (req, res) => {
-    res.send({ message: "findAll handler"});
-};
-
-exports.findOne = (req, res) => {
-    res.send({ message: "findOne handler"});
-};
-
-exports.update = (req, res) => {
-    res.send({ message: "update handler"});
-};
-
-exports.delete = (req, res) => {
-    res.send({ message: "delete handler"});
-};
-
-exports.deleteAll = (req, res) => {
-    res.send({ message: "deleteAll handler"});
-};
-
-exports.findAllFavorite = (req, res) => {
-    res.send({ message: "findAllFavorite handler"});
-};*/
 
 // Create and Save a new Contact
 exports.create = async (req, res, next) => {
@@ -136,7 +109,7 @@ exports.findAllFavorite = async (_req, res, next) => {
 exports.deleteAll = async (_req, res, next) => {
     try {
         const contactService = new ContactService(MongoDB.client);
-        const deletedCount = await contactService.deletedAll();
+        const deletedCount = await contactService.deleteAll();
         return res.send({
             message: `${deletedCount} contacts were deleted successfully`,
         });
